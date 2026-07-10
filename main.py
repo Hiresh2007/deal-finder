@@ -4,6 +4,11 @@ from pydantic import BaseModel, Field
 app = FastAPI(title="Deal Finder", version="1.0.0")
 
 
+@app.get("/")
+def root() -> dict[str, str]:
+    return {"message": "Deal Finder API", "docs": "/docs"}
+
+
 class AgentOffer(BaseModel):
     price: float = Field(..., ge=0, description="Requested price")
     deadline: float = Field(..., ge=0, description="Requested deadline")
