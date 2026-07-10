@@ -14,6 +14,14 @@ app = FastAPI(
     description="A lightweight negotiation matcher that helps autonomous agents agree on Pareto-optimal deals.",
     version="1.0.0",
     contact={"name": "Hiresh Yadav", "url": "https://github.com/Hiresh2007"},
+    terms_of_service="https://deal-finder-6bd1.onrender.com/",
+    license_info={"name": "Apache 2.0", "url": "https://www.apache.org/licenses/LICENSE-2.0.html"},
+    openapi_tags=[
+        {"name": "General", "description": "API metadata and root-level information."},
+        {"name": "Monitoring", "description": "Health and readiness endpoints."},
+        {"name": "Negotiation", "description": "Endpoints for negotiating deals between agents."},
+        {"name": "Documentation", "description": "Skill and reference documentation endpoints."},
+    ],
 )
 
 
@@ -134,6 +142,7 @@ def startup_event() -> None:
     summary="API overview",
     description="Returns basic metadata about the Deal Finder API.",
     response_description="API metadata",
+    tags=["General"],
 )
 def root() -> dict[str, str]:
     """Return a lightweight welcome message for the API."""
@@ -152,6 +161,7 @@ def root() -> dict[str, str]:
     summary="Health check",
     description="Returns the service status and version.",
     response_description="Service health status",
+    tags=["Monitoring"],
 )
 def health() -> dict[str, str]:
     """Return a simple health payload for monitoring."""
@@ -165,6 +175,7 @@ def health() -> dict[str, str]:
     summary="Negotiate a deal",
     description="Finds a Pareto-optimal middle ground between two agent offers.",
     response_description="Negotiated deal details",
+    tags=["Negotiation"],
 )
 def negotiate(request: NegotiationRequest) -> NegotiationResponse:
     """Return a balanced negotiation result from two agent offers."""
@@ -199,6 +210,7 @@ def negotiate(request: NegotiationRequest) -> NegotiationResponse:
     summary="Skill markdown",
     description="Serves the markdown file that explains how to use this API.",
     response_description="Markdown documentation",
+    tags=["Documentation"],
 )
 def skill_markdown() -> FileResponse:
     """Serve the SkillMD markdown file for agent integration."""
