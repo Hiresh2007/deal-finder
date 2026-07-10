@@ -46,14 +46,14 @@ payload = {
     "agent_a": {"price": 100, "deadline": 7},
     "agent_b": {"price": 130, "deadline": 10},
 }
-response = requests.post("https://your-app.onrender.com/negotiate", json=payload)
+response = requests.post("https://deal-finder-6bd1.onrender.com/negotiate", json=payload)
 print(response.json())
 ```
 
 ### Example with curl
 
 ```bash
-curl -X POST https://your-app.onrender.com/negotiate \
+curl -X POST https://deal-finder-6bd1.onrender.com/negotiate \
   -H "Content-Type: application/json" \
   -d '{"agent_a": {"price": 100, "deadline": 7}, "agent_b": {"price": 130, "deadline": 10}}'
 ```
